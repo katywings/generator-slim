@@ -1,0 +1,16 @@
+{% extends 'layouts/one_column.twig' %}
+
+{% block inline %} 
+{#<script type="text/javascript" src="/js/page.js"></script>#}
+{% endblock inline %}
+
+{% block sidebar %}
+
+{% endblock sidebar %}
+
+{% block content %}
+<div class="font_cap">Fehler</div><br />
+404 - Datei nicht gefunden<br />
+Sie werden in 5 Sekunden auf die Homepage <a href="{{ urlFor('Home') }}">www.dreamnoise.com</a> weitergeleitet...
+<meta HTTP-EQUIV="REFRESH" content="5; url=/">
+{% endblock content %}   

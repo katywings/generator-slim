@@ -1,0 +1,11 @@
+{% extends 'layouts/master.twig' %}
+
+{% block layout %}
+<div class="row">
+	<div class="span12">
+	    {% include "/layouts/breadcrumb.twig" %}
+	    {% block content %}{{ content|raw }}{% endblock content %}   
+	</div>
+</div>
+{% endblock layout %}
+

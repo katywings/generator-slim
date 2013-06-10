@@ -1,0 +1,6 @@
+<ul class="breadcrumb">
+  {% if viewName != 'Home' %}
+  <li><a href="/">Home</a> <span class="divider">/</span></li>
+  {% endif %}
+  <li class="active">{{ viewName }}</li>
+</ul>
