@@ -134,7 +134,7 @@ SlimGenerator.prototype.app = function app() {
     exec('git init');
     
     setTimeout((function() {
-      if(that.owner){
+      if(that.owner !== 'false'){
         exec('chown -R ' + that.owner + ' .', function(error, stdout, stderr){
           console.log('\nchown -R '.green + that.owner + ' .');
           if (error !== null) {
