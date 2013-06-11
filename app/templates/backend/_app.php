@@ -3,7 +3,7 @@
 namespace app;
 
 
-chdir ('../');
+chdir ('../app/');
 
 //Register lib autoloader
 require '../vendor/autoload.php';
@@ -11,9 +11,10 @@ use RedBean_Facade as R;
 
 // Prepare app
 
+require 'config/config.env.php';
+
 $app = new \Slim\Slim(array(
-	'mode' => 'production',
-	'mode' => 'development',
+	'mode' => $env,
 	'view' => new \Slim\Extras\Views\Twig(),
 	'templates.path' => '../app/views',
 	'log.level' => 4,

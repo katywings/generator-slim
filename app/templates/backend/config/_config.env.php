@@ -1,0 +1,3 @@
+<?php
+	$env = 'development';
+?>

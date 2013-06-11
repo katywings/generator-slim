@@ -5,4 +5,4 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
     header('X-UA-Compatible: IE=edge,chrome=1');
 
 //Load App
-require '../app.php';
+require '../app/app.php';

@@ -1,0 +1,1 @@
+console.log('Coffeescript Concat functional')

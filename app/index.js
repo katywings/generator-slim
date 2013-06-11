@@ -32,18 +32,19 @@ SlimGenerator.prototype.askFor = function askFor() {
   '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n';
 
   console.log(welcome);
-
+  console.log('\n Nach der Installation muss "grunt" ausgeführt werden!'.red);
   var prompts = [{
-    name: 'someOption',
-    message: 'Would you like to enable this option?',
-    default: 'Y/n',
-    warning: 'Yes: Enabling this will be totally awesome!'
+    name: 'chownOwner',
+    message: 'Datei und Ordner Eigentümer setzen? [benutzername]',
+    default: 'false'
   },{
     name: 'siteName',
-    message: 'Wie soll die Website heissen?'
+    message: 'Wie soll die Website heissen?',
+    default: 'dummy'
   },{
     name: 'author',
-    message: 'Wie heisst der Autor des Projekts?'
+    message: 'Wie heisst der Autor des Projekts?',
+    default: 'dummy'
   }];
 
   this.prompt(prompts, function (err, props) {
@@ -54,16 +55,24 @@ SlimGenerator.prototype.askFor = function askFor() {
     this.someOption = (/y/i).test(props.someOption);
     this.siteName = props.siteName;
     this.author = props.author;
+    this.owner = props.chownOwner;
 
     cb();
   }.bind(this));
 };
 
 SlimGenerator.prototype.app = function app() {
+  var that = this;
+
   this.mkdir('app');
   this.mkdir('cache');
   this.mkdir('logs');
-  this.mkdir('app/public');
+  this.mkdir('vendor');
+  this.mkdir('public');
+  this.mkdir('public/js');
+  this.mkdir('public/css');
+  this.mkdir('public/dev');
+  this.mkdir('public/img');
   this.mkdir('app/config');
   this.mkdir('app/models');
   this.mkdir('app/routes');
@@ -77,9 +86,10 @@ SlimGenerator.prototype.app = function app() {
   this.copy('_bowerrc', '.bowerrc');
   this.copy('_bower.json', 'bower.json');
   this.copy('_composer.json', 'composer.json');
+  this.copy('_gitignore', '.gitignore');
 
-  this.copy('frontend/_index.php', 'app/public/index.php');
-  this.copy('frontend/_htaccess', 'app/public/.htaccess');
+  this.copy('frontend/_index.php', 'public/index.php');
+  this.copy('frontend/_htaccess', 'public/.htaccess');
 
   //App Ressources
   this.copy('backend/_app.php', 'app/app.php');
@@ -93,14 +103,26 @@ SlimGenerator.prototype.app = function app() {
   //Copy Routes
   this.copy('backend/routes/_index.php', 'app/routes/index.php');
 
+  //Copy Coffeescript Sample Files
+  this.copy('backend/src/coffee/_app.coffee', 'app/src/coffee/app.coffee');
+  this.copy('backend/src/coffee/views/_viewTest.coffee', 'app/src/coffee/views/viewTest.coffee');
+
+  //Copy Less Sample Files
+  this.copy('backend/src/less/_styles.less', 'app/src/less/styles.less');
+
+  this.copy('backend/src/hbs/_head.hbs', 'app/src/hbs/head.hbs');
+  this.copy('backend/src/hbs/_config.env.hbs', 'app/src/hbs/config.env.hbs');
+
   //Copy Views
   this.copy('backend/views/_index.twig', 'app/views/index.twig');
   this.copy('backend/views/layouts/_master.twig', 'app/views/layouts/master.twig');
+  this.copy('backend/views/layouts/_head.html', 'app/views/layouts/head.html');
   this.copy('backend/views/layouts/_one_column.twig', 'app/views/layouts/one_column.twig');
   this.copy('backend/views/layouts/_breadcrumb.twig', 'app/views/layouts/breadcrumb.twig');
   this.copy('backend/views/layouts/_LICENSE.md', 'app/views/layouts/LICENSE.md');  
   this.copy('backend/views/errors/_404.twig', 'app/views/errors/404.twig');
 
+  this.copy('backend/config/_config.env.php', 'app/config/config.env.php');
   this.copy('backend/config/_config.development.php', 'app/config/config.development.php');
   this.copy('backend/config/_config.production.php', 'app/config/config.production.php');
 
@@ -109,6 +131,24 @@ SlimGenerator.prototype.app = function app() {
       return done(err);
     }
     exec('php composer.phar install');
+    exec('git init');
+    
+    setTimeout((function() {
+      if(that.owner){
+        exec('chown -R ' + that.owner + ' .', function(error, stdout, stderr){
+          console.log('\nchown -R '.green + that.owner + ' .');
+          if (error !== null) {
+            console.log('exec error: ' + error);
+          }
+          if (stdout !== null) {
+            console.log(stdout);
+          }
+          if (stderr !== null) {
+            console.log(stderr);
+          }
+        });
+      }
+    }), 5000);
   });
 };
 
