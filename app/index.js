@@ -52,7 +52,6 @@ SlimGenerator.prototype.askFor = function askFor() {
       return this.emit('error', err);
     }
 
-    this.someOption = (/y/i).test(props.someOption);
     this.siteName = props.siteName;
     this.author = props.author;
     this.owner = props.chownOwner;
