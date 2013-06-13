@@ -4,3 +4,5 @@ public/js
 public/dev
 public/css
 public/lib
+node_modules
+vendor

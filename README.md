@@ -8,6 +8,7 @@ A generator for Yeoman.
     `npm install -g yo`
 - Install the generator: `npm install -g generator-slim`
 - Run: `yo slim`
+- Run: `grunt`
 
 ## License
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
