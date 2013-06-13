@@ -3,7 +3,7 @@
 
 This generator setups up a Slim Project including all needed configs to begin with developing and providing several grunt configs.
 
-# This project is based on the [generator-generator](https://github.com/yeoman/generator-generator)
+**This project is based on the yeoman [generator-generator](https://github.com/yeoman/generator-generator)**
 
 ## Getting started
 - Make sure you have [yo](https://github.com/yeoman/yo) installed:
