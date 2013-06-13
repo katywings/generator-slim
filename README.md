@@ -1,5 +1,5 @@
 # Generator-slim
-[![Build Status](https://secure.travis-ci.org/katjalutz/generator-slim.png?branch=master)](https://travis-ci.org/katjalutz/generator-slim)
+[![Build Status](https://secure.travis-ci.org/katywings/generator-slim.png?branch=master)](https://travis-ci.org/katywings/generator-slim)
 
 A generator for Yeoman.
 
@@ -8,7 +8,7 @@ A generator for Yeoman.
     `npm install -g yo`
 - Install the generator: `npm install -g generator-slim`
 - Run: `yo slim`
-- Run: `grunt`
+- Run: `grunt
 
 ## License
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
