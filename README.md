@@ -1,7 +1,7 @@
 # Generator-slim
 [![Build Status](https://secure.travis-ci.org/katywings/generator-slim.png?branch=master)](https://travis-ci.org/katywings/generator-slim)
 
-A generator for Yeoman.
+This generator setups up a Slim Project including all needed configs to begin with developing and providing several grunt configs.
 
 ## Getting started
 - Make sure you have [yo](https://github.com/yeoman/yo) installed:
