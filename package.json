@@ -1,21 +1,21 @@
 {
   "name": "generator-slim",
-  "version": "0.0.0",
+  "version": "0.9.0",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "https://github.com/katjalutz/generator-slim",
-  "bugs": "https://github.com/katjalutz/generator-slim/issues",
+  "homepage": "http://katywings.github.io/generator-slim",
+  "bugs": "https://github.com/katywings/generator-slim/issues",
   "author": {
     "name": "",
     "email": "",
-    "url": "https://github.com/katjalutz"
+    "url": "https://github.com/katywings"
   },
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/katjalutz/generator-slim.git"
+    "url": "git://github.com/katywings/generator-slim.git"
   },
   "scripts": {
     "test": "mocha"
