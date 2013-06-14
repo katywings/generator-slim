@@ -32,18 +32,18 @@ SlimGenerator.prototype.askFor = function askFor() {
   '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n';
 
   console.log(welcome);
-  console.log('\n Nach der Installation muss "grunt" ausgeführt werden!'.red);
+  console.log('\n Please run "grunt" after the installation!'.red);
   var prompts = [{
     name: 'chownOwner',
-    message: 'Datei und Ordner Eigentümer setzen? [benutzername]',
+    message: 'Write File and Folder Rights? [username]',
     default: 'false'
   },{
     name: 'siteName',
-    message: 'Wie soll die Website heissen?',
+    message: 'Whats the name of the website?',
     default: 'dummy'
   },{
     name: 'author',
-    message: 'Wie heisst der Autor des Projekts?',
+    message: 'Who is the creator?',
     default: 'dummy'
   }];
 
