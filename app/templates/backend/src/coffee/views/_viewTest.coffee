@@ -1,1 +1,2 @@
-console.log('Coffeescript Concat functional')
+$ ->
+	console.log('Coffeescript Concat works')

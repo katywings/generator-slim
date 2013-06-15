@@ -13,16 +13,22 @@
         <title><%= siteName %> - {{ viewName }}</title>
 
         {% block link %}
-        <link rel="stylesheet" href="/lib/normalize-css/normalize.css" />
         <link rel="stylesheet" href="/lib/bootstrap/docs/assets/css/bootstrap.css" />
         <link rel="stylesheet" href="/lib/bootstrap/docs/assets/css/bootstrap-responsive.css" />
-
-        {% include 'layouts/head.html' %}
-        
         {% endblock %}
 
         {% block script %}
+        <script src="/lib/jquery/jquery.min.js"></script>
+        <script src="/lib/underscore/underscore-min.js"></script>
+        <script src="/lib/bootstrap/docs/assets/js/bootstrap.min.js"></script>
+        <script src="/lib/backbone/backbone-min.js"></script>
+        <script src="/lib/backbone.marionette/public/javascripts/json2.js"></script>
+        <script src="/lib/backbone.marionette/public/javascripts/backbone.babysitter.js"></script>
+        <script src="/lib/backbone.marionette/public/javascripts/backbone.wreqr.js"></script>
+        <script src="/lib/backbone.marionette/lib/backbone.marionette.min.js"></script>
         {% endblock %}
+
+        {% include 'layouts/head.html' %}
 
     </head>
     <body>
