@@ -1,8 +1,16 @@
 'use strict';
+
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var exec = require('child_process').exec;
+var execSync = require('exec-sync');
+var foldername = path.basename(process.cwd());
+var chownOwner = 'false';
+
+if(process.platform !== 'win32'){
+  chownOwner = execSync('echo $SUDO_USER');
+}
 
 var SlimGenerator = module.exports = function SlimGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
@@ -31,32 +39,29 @@ SlimGenerator.prototype.askFor = function askFor() {
   '\n   __' + '\'.___.\''.yellow + '__' +
   '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n';
   
+
   console.log(welcome);
   console.log('\n Please run "grunt" after the installation!'.red);
+  var prompts = [{
+    name: 'siteName',
+    message: 'Whats the name of the website?',
+    default: foldername
+  },{
+    name: 'author',
+    message: 'Who is the creator?',
+    default: 'dummy'
+  },{
+    name: 'serverPort',
+    message: 'Whats the webserver port?',
+    default: 8080
+  }];
+
   if(process.platform !== 'win32'){
-    var prompts = [{
+    prompts.push({
       name: 'chownOwner',
-      message: 'Set folder owner? [username]',
-      default: 'false'
-    },{
-      name: 'siteName',
-      message: 'Whats the name of the website?',
-      default: 'dummy'
-    },{
-      name: 'author',
-      message: 'Who is the creator?',
-      default: 'dummy'
-    }];
-  } else {
-    var prompts = [{
-      name: 'siteName',
-      message: 'Whats the name of the website?',
-      default: 'dummy'
-    },{
-      name: 'author',
-      message: 'Who is the creator?',
-      default: 'dummy'
-    }];
+      message: 'Set folder owner? [username|false]',
+      default: chownOwner
+    });
   }
   
 
@@ -67,7 +72,8 @@ SlimGenerator.prototype.askFor = function askFor() {
 
     this.siteName = props.siteName;
     this.author = props.author;
-    
+    this.serverPort = props.serverPort;
+
     if(process.platform !== 'win32'){
       this.owner = props.chownOwner;
     }
@@ -145,25 +151,11 @@ SlimGenerator.prototype.app = function app() {
     if (err) {
       return done(err);
     }
-    exec('php composer.phar install');
-    exec('git init');
-    
-    setTimeout((function() {
-      if(process.platform !== 'win32' && that.owner !== 'false'){
-        exec('chown -R ' + that.owner + ' .', function(error, stdout, stderr){
-          console.log('\nchown -R '.green + that.owner + ' .');
-          if (error !== null) {
-            console.log('exec error: ' + error);
-          }
-          if (stdout !== null) {
-            console.log(stdout);
-          }
-          if (stderr !== null) {
-            console.log(stderr);
-          }
-        });
-      }
-    }), 5000);
+    execSync('php composer.phar install');
+    execSync('git init');
+    if(process.platform !== 'win32' && that.owner !== 'false'){
+      execSync('chown -R ' + that.owner + ' .');
+    }
   });
 };
 

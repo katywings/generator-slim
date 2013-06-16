@@ -64,6 +64,11 @@ module.exports = function(grunt) {
         }
       }
     },
+    open : {
+      server : {
+        path: 'http://localhost:<%= serverPort %>'
+      },
+    },
     assemble: {
       development_html: {
         options: {
@@ -115,31 +120,65 @@ module.exports = function(grunt) {
           nospawn: true,
         },
       },
+    },
+    php: {
+      test: {
+        options: {
+          port: <%= serverPort %>,
+          keepalive: true,
+          open: false,
+          base: 'public'
+        }
+      }
+    },
+    parallel: {
+      server: {
+        options: {
+          grunt: true
+        },
+        tasks: ['php','watch','open:server']
+      }
     }
   });
 
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-mkdir');
+  grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-open');
+
+  // Compile tools
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-less');
+
+  // Clean tools
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-mkdir');
   
-  grunt.loadNpmTasks('grunt-bower-task');
+  // Modules for server and watcher
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-php');
+  grunt.loadNpmTasks('grunt-parallel');
   grunt.loadNpmTasks('assemble');
-
-  // Default task(s).
- 
+  
+  // Basic tasks.
+  grunt.registerTask('default', ['development']);
+  grunt.registerTask('build', ['coffee','uglify','less']);
   grunt.registerTask('fetch', ['exec','bower']);
 
-  grunt.registerTask('build', ['coffee','uglify','less']);
-
-  grunt.registerTask('default', ['development']);
-
+  // Setup environment for development
   grunt.registerTask('development', ['build','assemble:development_html','assemble:development_php','clean:development','mkdir']);
+
+  // Setup environment for production
   grunt.registerTask('production', ['build','assemble:production_html','assemble:production_php','clean:production','mkdir']);
 
+
+  grunt.registerTask('server', function(env){
+    if(env == 'production'){
+      grunt.task.run(['production','parallel:server']);
+    } else {
+      grunt.task.run(['default','parallel:server']);
+    }
+  });
 };
