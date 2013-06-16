@@ -60,15 +60,46 @@
 
 <ul>
 <li>Make sure you have <a href="https://github.com/yeoman/yo">yo</a> installed:
-<code>npm install -g yo</code>
+<code>sudo npm install -g yo</code>
 </li>
-<li>Install the generator: <code>npm install -g generator-slim</code>
+<li>Install the generator: <code>sudo npm install -g generator-slim</code>
 </li>
-<li>Run: <code>yo slim</code>
+<li>Run: <code>sudo yo slim</code>
 </li>
+</ul><h2>
+<a name="webserver-setup" class="anchor" href="#webserver-setup"><span class="octicon octicon-link"></span></a>Webserver Setup</h2>
+
+<h3>
+<a name="basic" class="anchor" href="#basic"><span class="octicon octicon-link"></span></a>Basic</h3>
+
+<p>The generator comes with a included grunt config to run a basic PHP webserver.</p>
+
+<ul>
+<li>PHP 5.4 is prerequired! Install it first
+
+<ul>
+<li><a href="http://php-osx.liip.ch">mac</a></li>
+</ul>
+</li>
+<li>Run: <code>grunt server</code>
+</li>
+</ul><h3>
+<a name="manual-installation" class="anchor" href="#manual-installation"><span class="octicon octicon-link"></span></a>Manual Installation</h3>
+
+<p>If you don't wanna use the included grunt server, you can use any Apache/PHP Webserver. To get your webserver to work with the project you need to change the following things:</p>
+
+<ul>
+<li>Setup your Apache Webserver DocumentRoot to "public/"</li>
 <li>Run: <code>grunt</code>
 </li>
-<li>Setup your Apache Webserver DocumentRoot to "public/"</li>
+<li>Or to start the watcher: <code>grunt watch</code>
+</li>
+</ul><h2>
+<a name="switch-between-development-and-production" class="anchor" href="#switch-between-development-and-production"><span class="octicon octicon-link"></span></a>Switch between development and production</h2>
+
+<ul>
+<li>Run: <code>grunt production</code> to switch to production</li>
+<li>Run: <code>grunt</code> or <code>grunt development</code> to switch back to development</li>
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
