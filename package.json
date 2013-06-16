@@ -1,6 +1,6 @@
 {
   "name": "generator-slim",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "A Yo Generator which sets up a new, on the Slim Framework based, project.",
   "keywords": [
     "yeoman-generator",
@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "yeoman-generator": "~0.10.2",
-    "exec-sync":"~0.1.6"
+    "exec-sync": "~0.1.6"
   },
   "devDependencies": {
     "mocha": "~1.9.0"
