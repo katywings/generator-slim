@@ -30,22 +30,35 @@ SlimGenerator.prototype.askFor = function askFor() {
   '\n     |  ~  |'.yellow +
   '\n   __' + '\'.___.\''.yellow + '__' +
   '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n';
-
+  
   console.log(welcome);
   console.log('\n Please run "grunt" after the installation!'.red);
-  var prompts = [{
-    name: 'chownOwner',
-    message: 'Write File and Folder Rights? [username]',
-    default: 'false'
-  },{
-    name: 'siteName',
-    message: 'Whats the name of the website?',
-    default: 'dummy'
-  },{
-    name: 'author',
-    message: 'Who is the creator?',
-    default: 'dummy'
-  }];
+  if(process.platform !== 'win32'){
+    var prompts = [{
+      name: 'chownOwner',
+      message: 'Set folder owner? [username]',
+      default: 'false'
+    },{
+      name: 'siteName',
+      message: 'Whats the name of the website?',
+      default: 'dummy'
+    },{
+      name: 'author',
+      message: 'Who is the creator?',
+      default: 'dummy'
+    }];
+  } else {
+    var prompts = [{
+      name: 'siteName',
+      message: 'Whats the name of the website?',
+      default: 'dummy'
+    },{
+      name: 'author',
+      message: 'Who is the creator?',
+      default: 'dummy'
+    }];
+  }
+  
 
   this.prompt(prompts, function (err, props) {
     if (err) {
@@ -54,7 +67,10 @@ SlimGenerator.prototype.askFor = function askFor() {
 
     this.siteName = props.siteName;
     this.author = props.author;
-    this.owner = props.chownOwner;
+    
+    if(process.platform !== 'win32'){
+      this.owner = props.chownOwner;
+    }
 
     cb();
   }.bind(this));
@@ -133,7 +149,7 @@ SlimGenerator.prototype.app = function app() {
     exec('git init');
     
     setTimeout((function() {
-      if(that.owner !== 'false'){
+      if(process.platform !== 'win32' && that.owner !== 'false'){
         exec('chown -R ' + that.owner + ' .', function(error, stdout, stderr){
           console.log('\nchown -R '.green + that.owner + ' .');
           if (error !== null) {

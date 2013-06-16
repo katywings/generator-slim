@@ -3,7 +3,7 @@
   "version": "0.9.2",
   "description": "A Yo Generator which sets up a new, on the Slim Framework based, project.",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator", "php", "slim"
   ],
   "homepage": "http://katywings.github.io/generator-slim",
   "bugs": "https://github.com/katywings/generator-slim/issues",
