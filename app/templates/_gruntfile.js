@@ -114,10 +114,11 @@ module.exports = function(grunt) {
     },
     watch: {
       scripts: {
-        files: ['**/*.coffee','**/*.less'],
+        files: ['**/*.coffee','**/*.less','**/*.twig'],
         tasks: ['build'],
         options: {
           nospawn: true,
+          livereload: true
         },
       },
     },
@@ -134,9 +135,10 @@ module.exports = function(grunt) {
     parallel: {
       server: {
         options: {
-          grunt: true
+          grunt: true,
+          stream: true
         },
-        tasks: ['php','watch','open:server']
+        tasks: ['php','watch','browser']
       }
     }
   });
@@ -173,12 +175,16 @@ module.exports = function(grunt) {
   // Setup environment for production
   grunt.registerTask('production', ['build','assemble:production_html','assemble:production_php','clean:production','mkdir']);
 
-
   grunt.registerTask('server', function(env){
     if(env == 'production'){
       grunt.task.run(['production','parallel:server']);
     } else {
       grunt.task.run(['default','parallel:server']);
     }
+  });
+
+  grunt.registerTask('browser', function(){
+    setTimeout(grunt.task.run(['open:server']), 10000);
+    
   });
 };
