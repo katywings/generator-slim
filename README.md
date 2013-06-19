@@ -1,7 +1,7 @@
 # Generator-slim
 [![Build Status](https://secure.travis-ci.org/katywings/generator-slim.png)](https://travis-ci.org/katywings/generator-slim)
 
-This yeoman generator sets up a PHP Project including [Slim Framework](http://http://www.slimframework.com), all needed configs to begin with developing and several grunt tasks. Yes its a PHP Project Generator and automatically downloads composer and several php libs for fast prototyping.
+This yeoman generator sets up a PHP Project including [Slim Framework](http://www.slimframework.com), all needed configs to begin with developing and several grunt tasks. Yes its a PHP Project Generator and automatically downloads composer and several php libs for fast prototyping.
 
 (based on the yeoman [generator-generator](https://github.com/yeoman/generator-generator))
 
