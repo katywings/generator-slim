@@ -3,7 +3,6 @@
   "author": "<%= author %>",
   "version": "0.0.0",
   "dependencies": {
-  	"coffee-script": ">=1.6.3",
   	"jquery": "~1.9.0",
   	"moment": ">=2.0.0",
   	"bootstrap": ">=2.3.0",

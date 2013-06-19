@@ -88,7 +88,9 @@ SlimGenerator.prototype.app = function app() {
   this.mkdir('app');
   this.mkdir('cache');
   this.mkdir('logs');
-  this.mkdir('vendor');
+  this.mkdir('bower_modules');
+  this.mkdir('node_modules');
+  this.mkdir('composer_modules');
   this.mkdir('public');
   this.mkdir('public/js');
   this.mkdir('public/css');
@@ -161,5 +163,4 @@ SlimGenerator.prototype.app = function app() {
 
 SlimGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('editorconfig', '.editorconfig');
-  this.copy('jshintrc', '.jshintrc');
 };

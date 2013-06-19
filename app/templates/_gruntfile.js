@@ -11,9 +11,33 @@ module.exports = function(grunt) {
       }
     },
     concat: {
+      bower_js: {
+        src: ['bower_modules/jquery/jquery.min.js',
+        'bower_modules/underscore/underscore-min.js',
+        'bower_modules/bootstrap/docs/assets/js/bootstrap.min.js',
+        'bower_modules/backbone/backbone-min.js',
+        'bower_modules/backbone.marionette/public/javascripts/json2.js',
+        'bower_modules/backbone.marionette/public/javascripts/backbone.babysitter.js',
+        'bower_modules/backbone.marionette/public/javascripts/backbone.wreqr.js',
+        'bower_modules/backbone.marionette/lib/backbone.marionette.min.js',
+        'bower_modules/moment/min/moment.min.js',
+        'bower_modules/moment/min/langs.min.js'
+        ],
+        dest: 'public/js/lib.js'
+      },
+      bower_css: {
+        src: ['bower_modules/bootstrap/docs/assets/css/bootstrap.css',
+        'bower_modules/bootstrap/docs/assets/css/bootstrap-responsive.css'],
+        dest: 'public/css/lib.css'
+      }
+    },
+    copy: {
       dist: {
-        src: ['app/src/coffee/*.coffee'],
-        dest: 'public/js/dev/app.coffee'
+        files: [
+          {src: ['public/**'], dest: 'dist/'},
+          {src: ['app/**'], dest: 'dist/'},
+          {src: ['composer_modules/**'], dest: 'dist/'},
+        ]
       }
     },
     bower: {
@@ -24,7 +48,10 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'public/dev/js/app.js': ['app/src/coffee/*.coffee','app/src/coffee/views/*.coffee'] // compile and concat into single file
+          'public/dev/js/app.js': ['app/src/coffee/*.coffee',
+          'app/src/coffee/views/*.coffee',
+          'app/src/coffee/models/*.coffee',
+          'app/src/coffee/collections/*.coffee',] // compile and concat into single file
         }
       }
     },
@@ -51,6 +78,7 @@ module.exports = function(grunt) {
       }
     },
     clean: {
+      dist: ["dist/app/src"],
       development: ["logs","cache"],
       production: ["public/dev", "logs", "cache"]
     },
@@ -58,9 +86,14 @@ module.exports = function(grunt) {
       options: {
         // Task-specific options go here.
       },
-      your_target: {
+      clean: {
         options: {
           create: ['logs','cache']
+        }
+      },
+      dist: {
+        options: {
+          create: ['dist/logs','dist/cache']
         }
       }
     },
@@ -113,13 +146,20 @@ module.exports = function(grunt) {
       
     },
     watch: {
-      scripts: {
-        files: ['**/*.coffee','**/*.less','**/*.twig'],
-        tasks: ['build'],
-        options: {
-          nospawn: true,
-          livereload: true
-        },
+      options: {
+        nospawn: true,
+        livereload: true
+      },
+      coffee: {
+        files: ['**/*.coffee','**/*.twig'],
+        tasks: ['coffee','uglify'], 
+      },
+      less: {
+        files: ['**/*.less','**/*.twig'],
+        tasks: ['less'], 
+      },
+      twig: {
+        files: ['**/*.twig'],
       },
     },
     php: {
@@ -143,9 +183,10 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
+  // Basic tasks
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-mkdir');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-open');
 
@@ -168,12 +209,13 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['development']);
   grunt.registerTask('build', ['coffee','uglify','less']);
   grunt.registerTask('fetch', ['exec','bower']);
+  grunt.registerTask('dist', ['production','copy:dist','clean:dist']);
 
   // Setup environment for development
-  grunt.registerTask('development', ['build','assemble:development_html','assemble:development_php','clean:development','mkdir']);
+  grunt.registerTask('development', ['build','concat','assemble:development_html','assemble:development_php','clean:development','mkdir']);
 
   // Setup environment for production
-  grunt.registerTask('production', ['build','assemble:production_html','assemble:production_php','clean:production','mkdir']);
+  grunt.registerTask('production', ['build','concat','assemble:production_html','assemble:production_php','clean:production','mkdir']);
 
   grunt.registerTask('server', function(env){
     if(env == 'production'){

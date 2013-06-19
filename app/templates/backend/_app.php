@@ -6,7 +6,7 @@ namespace app;
 chdir ('../app/');
 
 //Register lib autoloader
-require '../vendor/autoload.php';
+require '../composer_modules/autoload.php';
 use RedBean_Facade as R;
 
 // Prepare app
@@ -61,7 +61,7 @@ $app->notFound(function () use ($app) {
 $app->view()->setData(array('menu'=>array(
 	'Home',
 	),
-	));
+));
 
 //Run
 $app->run();

@@ -3,6 +3,9 @@ logs
 public/js
 public/dev
 public/css
-public/lib
+dist
+bower_modules
 node_modules
-vendor
+composer_modules
+composer.lock
+composer.phar
