@@ -1,78 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
-
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
     <title>Generator-slim by katywings</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
-    <a id="forkme_banner" href="https://github.com/katywings/generator-slim">View on GitHub</a>
-    <div class="shell">
-
+    <div class="wrapper">
       <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Generator-slim</h1>
-            <h2>A Yo Generator which sets up a new, on the Slim Framework based, project.</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
+        <h1>Generator-slim</h1>
+        <p>A Yo Generator which sets up a new, on the Slim Framework based, project.</p>
+
+        <p class="view"><a href="https://github.com/katywings/generator-slim">View the Project on GitHub <small>katywings/generator-slim</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/katywings/generator-slim/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/katywings/generator-slim/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/katywings/generator-slim">View On <strong>GitHub</strong></a></li>
+        </ul>
       </header>
-
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/katywings/generator-slim/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/katywings/generator-slim/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
-
-
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
+      <section>
         <h1>
 <a name="generator-slim" class="anchor" href="#generator-slim"><span class="octicon octicon-link"></span></a>Generator-slim</h1>
 
 <p><a href="https://travis-ci.org/katywings/generator-slim"><img src="https://secure.travis-ci.org/katywings/generator-slim.png" alt="Build Status"></a></p>
 
-<p>This generator sets up a Slim Project including all needed configs to begin with developing and providing several grunt configs.</p>
+<p>This yeoman generator sets up a PHP Project including <a href="http://www.slimframework.com">Slim Framework</a>, all needed configs to begin with developing and several grunt tasks. Yes its a PHP Project Generator and automatically downloads composer and several php libs for fast prototyping.</p>
 
-<p><strong>This project is based on the yeoman <a href="https://github.com/yeoman/generator-generator">generator-generator</a>.</strong></p>
+<p>(based on the yeoman <a href="https://github.com/yeoman/generator-generator">generator-generator</a>)</p>
+
+<p>For the client part, ive included Backbone and Marionette. Coffeescript and Less are integrated in app/src and automatically builded and minified into the public folder.</p>
 
 <h2>
 <a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
 
 <ul>
-<li>Make sure you have <a href="https://github.com/yeoman/yo">yo</a> installed:
-<code>sudo npm install -g yo</code>
+<li>Make sure you have <a href="https://github.com/yeoman/yo">yo</a> installed: <code>sudo npm install -g yo</code>
 </li>
 <li>Install the generator: <code>sudo npm install -g generator-slim</code>
 </li>
 <li>Run: <code>sudo yo slim</code>
 </li>
 </ul><h2>
-<a name="webserver-setup" class="anchor" href="#webserver-setup"><span class="octicon octicon-link"></span></a>Webserver Setup</h2>
+<a name="server-setup" class="anchor" href="#server-setup"><span class="octicon octicon-link"></span></a>Server Setup</h2>
 
 <h3>
 <a name="basic" class="anchor" href="#basic"><span class="octicon octicon-link"></span></a>Basic</h3>
 
-<p>The generator comes with a included grunt config to run a basic PHP webserver.</p>
+<p>The generator comes with a included server for php. For faster development, I added a watcher with build at change and livereload.</p>
 
 <ul>
 <li>PHP 5.4 is prerequired! Install it first
@@ -92,7 +75,7 @@
 <li>Setup your Apache Webserver DocumentRoot to "public/"</li>
 <li>Run: <code>grunt</code>
 </li>
-<li>Or to start the watcher: <code>grunt watch</code>
+<li>And to start the watcher: <code>grunt watch</code>
 </li>
 </ul><h2>
 <a name="switch-between-development-and-production" class="anchor" href="#switch-between-development-and-production"><span class="octicon octicon-link"></span></a>Switch between development and production</h2>
@@ -101,25 +84,33 @@
 <li>Run: <code>grunt production</code> to switch to production</li>
 <li>Run: <code>grunt</code> or <code>grunt development</code> to switch back to development</li>
 </ul><h2>
+<a name="further-grunt-tasks" class="anchor" href="#further-grunt-tasks"><span class="octicon octicon-link"></span></a>Further Grunt Tasks</h2>
+
+<h3>
+<a name="building-dist" class="anchor" href="#building-dist"><span class="octicon octicon-link"></span></a>Building dist</h3>
+
+<p>The generated distribution includes just the needed files and is as small as possible. </p>
+
+<ul>
+<li>Run: <code>grunt dist</code> to generate the dist</li>
+<li>
+<code>grunt dist</code> changes automatically to production, run <code>grunt</code> if you wanna change back to development!</li>
+</ul><h3>
+<a name="fetching-npm-and-bower-modules" class="anchor" href="#fetching-npm-and-bower-modules"><span class="octicon octicon-link"></span></a>Fetching npm and bower modules</h3>
+
+<ul>
+<li>Run: <code>sudo grunt fetch</code>, WARNING: The downloaded files will have System as Owner!</li>
+</ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p><a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a></p>
       </section>
-
       <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/katywings">katywings</a> can be found on <a href="https://github.com/katywings/generator-slim">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
+        <p>This project is maintained by <a href="https://github.com/katywings">katywings</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
-
     </div>
-
+    <script src="javascripts/scale.fix.js"></script>
     
   </body>
 </html>
