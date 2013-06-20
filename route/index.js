@@ -31,15 +31,15 @@ RouteGenerator.prototype.askFor = function askFor() {
   
   var prompts = [{
     name: 'routeName',
-    message: 'Wie lautet der Name der neuen Route?',
+    message: 'Whats the name of the new route',
     default: 'dummy'
   },{
     name: 'routeUri',
-    message: 'Wie lautet die Route URI',
+    message: 'Whats the URI? (example: /contact)',
     default: '/'
   },{
     name: 'fileName',
-    message: 'Wie sollen die Dateien genannt werden?',
+    message: 'How should I name the generated files?',
     default: 'dummy'
   }];
 

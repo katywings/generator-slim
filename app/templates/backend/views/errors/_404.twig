@@ -1,16 +1,14 @@
-{% extends 'layouts/master.twig' %}
+{% extends 'layouts/one_column.twig' %}
 
 {% block inline %} 
 
 {% endblock inline %}
 
-{% block sidebar %}
-
-{% endblock sidebar %}
-
 {% block content %}
-<div class="font_cap">Fehler</div><br />
-404 - Datei nicht gefunden<br />
-Sie werden in 5 Sekunden auf die Startseite <a href="{{ urlFor('Home') }}"><%= siteName %></a> weitergeleitet...
+<div class="page-header"><h1>Error<br /><small>404 - File not found</small></h1></div>
+<em>{{ requesturi }}</em>
+<p class="lead">
+	You will be automatically redirected to the homepage <a href="{{ urlFor('Home') }}">test</a> in five seconds.
+</p>
 <meta HTTP-EQUIV="REFRESH" content="5; url=/">
 {% endblock content %}   

@@ -31,7 +31,7 @@ $app->add(new \Slim\Middleware\SessionCookie(array(
     'secure' => false,
     'httponly' => false,
     'name' => 'slim_session',
-    'secret' => 'EUYVtL2sF90D1a0c4e1zXruHnvtMEbi6AKMzpWVL',
+    'secret' => 'AddYourSecretHere',
     'cipher' => MCRYPT_RIJNDAEL_256,
     'cipher_mode' => MCRYPT_MODE_CBC
 )));
@@ -41,7 +41,9 @@ require 'bootstrap.php';
 
 //Load 404 Route
 $app->notFound(function () use ($app) {
-	$app->view()->appendData(array('viewName'=>'Seite nicht gefunden'));
+	$request = $app->request();
+	$requesturi = 'http://'.$_SERVER["HTTP_HOST"].$request->getRootUri().$request->getResourceUri();
+	$app->view()->appendData(array('viewName'=>'Page not found','requesturi'=>$requesturi));
     $app->render('errors/404.twig');
 });
 

@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         'bower_modules/moment/min/moment.min.js',
         'bower_modules/moment/min/langs.min.js'
         ],
-        dest: 'public/js/lib.js'
+        dest: 'public/js/lib.min.js'
       },
       bower_css: {
         src: ['bower_modules/bootstrap/docs/assets/css/bootstrap.css',
@@ -56,9 +56,14 @@ module.exports = function(grunt) {
       }
     },
     uglify: {
-      my_target: {
+      app: {
         files: {
           'public/js/app.min.js': ['public/dev/js/app.js']
+        }
+      },
+      lib: {
+        files: {
+          'public/js/lib.min.js': ['public/js/lib.min.js']
         }
       }
     },
@@ -152,7 +157,7 @@ module.exports = function(grunt) {
       },
       coffee: {
         files: ['**/*.coffee','**/*.twig'],
-        tasks: ['coffee','uglify'], 
+        tasks: ['coffee','uglify:app'], 
       },
       less: {
         files: ['**/*.less','**/*.twig'],
@@ -207,15 +212,16 @@ module.exports = function(grunt) {
   
   // Basic tasks.
   grunt.registerTask('default', ['development']);
-  grunt.registerTask('build', ['coffee','uglify','less']);
+  grunt.registerTask('build', ['coffee','uglify:app','less']);
   grunt.registerTask('fetch', ['exec','bower']);
-  grunt.registerTask('dist', ['production','copy:dist','clean:dist']);
+  grunt.registerTask('dist', ['production','copy:dist','clean:dist','mkdir:dist']);
+  grunt.registerTask('lib', ['concat','uglify:lib']);
 
   // Setup environment for development
-  grunt.registerTask('development', ['build','concat','assemble:development_html','assemble:development_php','clean:development','mkdir']);
+  grunt.registerTask('development', ['build','lib','assemble:development_html','assemble:development_php','clean:development','mkdir:clean']);
 
   // Setup environment for production
-  grunt.registerTask('production', ['build','concat','assemble:production_html','assemble:production_php','clean:production','mkdir']);
+  grunt.registerTask('production', ['build','lib','assemble:production_html','assemble:production_php','clean:production','mkdir:clean']);
 
   grunt.registerTask('server', function(env){
     if(env == 'production'){
@@ -226,7 +232,10 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('browser', function(){
-    setTimeout(grunt.task.run(['open:server']), 10000);
-    
+    var done = this.async();
+    setTimeout(function(){
+      grunt.task.run(['open:server']);
+      done();
+    }, 1000);
   });
 };
