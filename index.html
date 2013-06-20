@@ -33,7 +33,9 @@
 
 <p><a href="https://travis-ci.org/katywings/generator-slim"><img src="https://secure.travis-ci.org/katywings/generator-slim.png" alt="Build Status"></a></p>
 
-<p>This yeoman generator sets up a PHP Project including <a href="http://www.slimframework.com">Slim Framework</a>, all needed configs to begin with developing and several grunt tasks. Yes its a PHP Project Generator and automatically downloads composer and several php libs for fast prototyping.</p>
+<p>Maintainer: <a href="https://github.com/katywings">Katja Lutz</a></p>
+
+<p>This yeoman generator sets up a PHP Project including <a href="http://www.slimframework.com">Slim Framework</a>, all needed configs to begin with developing and several grunt tasks. Yes its a PHP Project Generator and automatically downloads composer and several php libs.</p>
 
 <p>(based on the yeoman <a href="https://github.com/yeoman/generator-generator">generator-generator</a>)</p>
 
@@ -50,22 +52,121 @@
 <li>Run: <code>sudo yo slim</code>
 </li>
 </ul><h2>
-<a name="server-setup" class="anchor" href="#server-setup"><span class="octicon octicon-link"></span></a>Server Setup</h2>
+<a name="what-do-you-get" class="anchor" href="#what-do-you-get"><span class="octicon octicon-link"></span></a>What do you get?</h2>
+
+<p>The following directory structure do you get:</p>
+
+<pre><code>.
+├── .bowerrc
+├── .editorconfig
+├── .gitignore
+├── app
+│   ├── app.php
+│   ├── autoload.php
+│   ├── bootstrap.php
+│   ├── config
+│   │   ├── config.development.php
+│   │   ├── config.env.php
+│   │   └── config.production.php
+│   ├── helpers
+│   │   ├── Authhash.php
+│   │   └── Search.php
+│   ├── models
+│   ├── routes
+│   │   └── index.php
+│   ├── src
+│   │   ├── coffee
+│   │   │   ├── app.coffee
+│   │   │   └── views
+│   │   │       └── viewTest.coffee
+│   │   ├── hbs
+│   │   │   ├── config.env.hbs
+│   │   │   └── head.hbs
+│   │   └── less
+│   │       └── styles.less
+│   └── views
+│       ├── errors
+│       │   └── 404.twig
+│       ├── index.twig
+│       └── layouts
+│           ├── LICENSE.md
+│           ├── breadcrumb.twig
+│           ├── head.html
+│           ├── master.twig
+│           └── one_column.twig
+├── bower.json
+├── bower_modules
+├── cache
+├── composer.json
+├── composer.lock
+├── composer.phar
+├── composer_modules
+│   ├── autoload.php
+│   └── composer
+│       ├── ClassLoader.php
+│       ├── autoload_classmap.php
+│       ├── autoload_namespaces.php
+│       ├── autoload_real.php
+│       └── installed.json
+├── gruntfile.js
+├── logs
+├── node_modules
+└── public
+    ├── .htaccess
+    ├── css
+    ├── dev
+    ├── img
+    ├── index.php
+    └── js
+</code></pre>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
 <h3>
 <a name="basic" class="anchor" href="#basic"><span class="octicon octicon-link"></span></a>Basic</h3>
 
+<ul>
+<li>All what you need for fast developing in PHP and Coffescript</li>
+<li>Several optimized grunt tasks</li>
+<li>Ready after install: start <code>grunt server</code> and you`re ready for development</li>
+<li>Yeah git init was started at the installation ;) </li>
+</ul><h3>
+<a name="server-side" class="anchor" href="#server-side"><span class="octicon octicon-link"></span></a>Server Side</h3>
+
+<ul>
+<li>PHP Basic Setup</li>
+<li>Slim Framework Configured</li>
+<li>Development / Production Settings</li>
+<li><a href="http://twig.sensiolabs.org">Twig</a></li>
+<li>Templates (master layout based on h5b, one-column, breadcrumb, 404 error)</li>
+<li><a href="https://github.com/Synchro/PHPMailer">PHP Mailer</a></li>
+<li><a href="http://redbeanphp.com">RedBeanPHP</a></li>
+<li>Several PHP Helper Classes (AuthHash Class, Search Class: File-based search Crawler)</li>
+<li>Sub Generator for Routes <code>yo slim:route</code>
+</li>
+</ul><h3>
+<a name="client-side" class="anchor" href="#client-side"><span class="octicon octicon-link"></span></a>Client Side</h3>
+
+<ul>
+<li>jQuery</li>
+<li>Underscore</li>
+<li>Moment</li>
+<li>Backbone</li>
+<li>Backbone.Marionette</li>
+<li>Less and Coffeescript Automatic Compilation, Integration and Livereload</li>
+</ul><h2>
+<a name="server-setup" class="anchor" href="#server-setup"><span class="octicon octicon-link"></span></a>Server Setup</h2>
+
+<h3>
+<a name="basic-1" class="anchor" href="#basic-1"><span class="octicon octicon-link"></span></a>Basic</h3>
+
 <p>The generator comes with a included server for php. For faster development, I added a watcher with build at change and livereload.</p>
 
 <ul>
-<li>PHP 5.4 is prerequired! Install it first
-
-<ul>
-<li><a href="http://php-osx.liip.ch">mac</a></li>
-</ul>
-</li>
-<li>Run: <code>grunt server</code>
-</li>
+<li>PHP 5.4 is prerequired! Install it first (for <a href="http://php-osx.liip.ch">mac</a>)</li>
+<li>Run: <code>grunt server</code> (The server runs in development!)</li>
+<li>Run: <code>grunt server:production</code> to launch the production server</li>
 </ul><h3>
 <a name="manual-installation" class="anchor" href="#manual-installation"><span class="octicon octicon-link"></span></a>Manual Installation</h3>
 
@@ -78,11 +179,24 @@
 <li>And to start the watcher: <code>grunt watch</code>
 </li>
 </ul><h2>
-<a name="switch-between-development-and-production" class="anchor" href="#switch-between-development-and-production"><span class="octicon octicon-link"></span></a>Switch between development and production</h2>
+<a name="environments" class="anchor" href="#environments"><span class="octicon octicon-link"></span></a>Environments</h2>
+
+<p>Thanks to the included server you often really doesnt need the following commands. But if you use an own Apache, PHP Server you need these commands to switch between the environments!</p>
+
+<h3>
+<a name="development" class="anchor" href="#development"><span class="octicon octicon-link"></span></a>Development</h3>
+
+<p>All Script and CSS Files are served in full length, no uglifying. PHP View Files doesnt get cached. Livereload is active.</p>
+
+<ul>
+<li>Run: <code>grunt</code> or <code>grunt development</code> to switch development</li>
+</ul><h3>
+<a name="production" class="anchor" href="#production"><span class="octicon octicon-link"></span></a>Production</h3>
+
+<p>Script and CSS Files are served minified. No livereload!</p>
 
 <ul>
 <li>Run: <code>grunt production</code> to switch to production</li>
-<li>Run: <code>grunt</code> or <code>grunt development</code> to switch back to development</li>
 </ul><h2>
 <a name="further-grunt-tasks" class="anchor" href="#further-grunt-tasks"><span class="octicon octicon-link"></span></a>Further Grunt Tasks</h2>
 
@@ -100,6 +214,42 @@
 
 <ul>
 <li>Run: <code>sudo grunt fetch</code>, WARNING: The downloaded files will have System as Owner!</li>
+</ul><h2>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+<ul>
+<li>
+<p>0.9.8</p>
+
+<ul>
+<li>Extended the manual including the directory structure, features and new tips and tricks</li>
+<li>Corrected Bug: 404 error template wasnt loading correctly</li>
+<li>Changes in Gruntfile
+
+<ul>
+<li>Bug: when running <code>grunt server</code>, the Browser started before the server was ready, is fixed</li>
+<li>Bug: <code>grunt server</code> creates dist folder, is fixed</li>
+<li>Added Feature: uglifying of javascript lib</li>
+</ul>
+</li>
+<li>English translation of 404 error template, and added some styling</li>
+<li>English translation of subgenerator:Route</li>
+</ul>
+</li>
+<li>
+<p>0.9.x</p>
+
+<ul>
+<li>Description is coming :P</li>
+</ul>
+</li>
+<li>
+<p>0.9.0</p>
+
+<ul>
+<li>First release</li>
+</ul>
+</li>
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
