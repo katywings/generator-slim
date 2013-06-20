@@ -16,68 +16,69 @@ For the client part, ive included Backbone and Marionette. Coffeescript and Less
 
 ## What do you get?
 The following directory structure do you get:
-	.
-	├── .bowerrc
-	├── .editorconfig
-	├── .gitignore
-	├── app
-	│   ├── app.php
-	│   ├── autoload.php
-	│   ├── bootstrap.php
-	│   ├── config
-	│   │   ├── config.development.php
-	│   │   ├── config.env.php
-	│   │   └── config.production.php
-	│   ├── helpers
-	│   │   ├── Authhash.php
-	│   │   └── Search.php
-	│   ├── models
-	│   ├── routes
-	│   │   └── index.php
-	│   ├── src
-	│   │   ├── coffee
-	│   │   │   ├── app.coffee
-	│   │   │   └── views
-	│   │   │       └── viewTest.coffee
-	│   │   ├── hbs
-	│   │   │   ├── config.env.hbs
-	│   │   │   └── head.hbs
-	│   │   └── less
-	│   │       └── styles.less
-	│   └── views
-	│       ├── errors
-	│       │   └── 404.twig
-	│       ├── index.twig
-	│       └── layouts
-	│           ├── LICENSE.md
-	│           ├── breadcrumb.twig
-	│           ├── head.html
-	│           ├── master.twig
-	│           └── one_column.twig
-	├── bower.json
-	├── bower_modules
-	├── cache
-	├── composer.json
-	├── composer.lock
-	├── composer.phar
-	├── composer_modules
-	│   ├── autoload.php
-	│   └── composer
-	│       ├── ClassLoader.php
-	│       ├── autoload_classmap.php
-	│       ├── autoload_namespaces.php
-	│       ├── autoload_real.php
-	│       └── installed.json
-	├── gruntfile.js
-	├── logs
-	├── node_modules
-	└── public
-	    ├── .htaccess
-	    ├── css
-	    ├── dev
-	    ├── img
-	    ├── index.php
-	    └── js
+
+    .
+    ├── .bowerrc
+    ├── .editorconfig
+    ├── .gitignore
+    ├── app
+    │   ├── app.php
+    │   ├── autoload.php
+    │   ├── bootstrap.php
+    │   ├── config
+    │   │   ├── config.development.php
+    │   │   ├── config.env.php
+    │   │   └── config.production.php
+    │   ├── helpers
+    │   │   ├── Authhash.php
+    │   │   └── Search.php
+    │   ├── models
+    │   ├── routes
+    │   │   └── index.php
+    │   ├── src
+    │   │   ├── coffee
+    │   │   │   ├── app.coffee
+    │   │   │   └── views
+    │   │   │       └── viewTest.coffee
+    │   │   ├── hbs
+    │   │   │   ├── config.env.hbs
+    │   │   │   └── head.hbs
+    │   │   └── less
+    │   │       └── styles.less
+    │   └── views
+    │       ├── errors
+    │       │   └── 404.twig
+    │       ├── index.twig
+    │       └── layouts
+    │           ├── LICENSE.md
+    │           ├── breadcrumb.twig
+    │           ├── head.html
+    │           ├── master.twig
+    │           └── one_column.twig
+    ├── bower.json
+    ├── bower_modules
+    ├── cache
+    ├── composer.json
+    ├── composer.lock
+    ├── composer.phar
+    ├── composer_modules
+    │   ├── autoload.php
+    │   └── composer
+    │       ├── ClassLoader.php
+    │       ├── autoload_classmap.php
+    │       ├── autoload_namespaces.php
+    │       ├── autoload_real.php
+    │       └── installed.json
+    ├── gruntfile.js
+    ├── logs
+    ├── node_modules
+    └── public
+        ├── .htaccess
+        ├── css
+        ├── dev
+        ├── img
+        ├── index.php
+        └── js
 
 ## Features
 
@@ -142,20 +143,20 @@ The generated distribution includes just the needed files and is as small as pos
 
 ## Changelog
 * 0.9.8
-	* Extended the manual including the directory structure, features and new tips and tricks
-	* Corrected Bug: 404 error template wasnt loading correctly
-	* Changes in Gruntfile
-		* Bug: when running `grunt server`, the Browser started before the server was ready, is fixed
-		* Bug: `grunt server` creates dist folder, is fixed
-		* Added Feature: uglifying of javascript lib
-	* English translation of 404 error template, and added some styling
-	* English translation of subgenerator:Route
+    * Extended the manual including the directory structure, features and new tips and tricks
+    * Corrected Bug: 404 error template wasnt loading correctly
+    * Changes in Gruntfile
+        * Bug: when running `grunt server`, the Browser started before the server was ready, is fixed
+        * Bug: `grunt server` creates dist folder, is fixed
+        * Added Feature: uglifying of javascript lib
+    * English translation of 404 error template, and added some styling
+    * English translation of subgenerator:Route
 
 * 0.9.x
-	* Description is coming :P
+    * Description is coming :P
 
 * 0.9.0
-	* First release
+    * First release
 
 ## License
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
