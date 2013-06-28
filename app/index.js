@@ -91,6 +91,8 @@ SlimGenerator.prototype.app = function app() {
   this.mkdir('bower_modules');
   this.mkdir('node_modules');
   this.mkdir('composer_modules');
+  this.mkdir('test');
+  this.mkdir('test/jasmine');
   this.mkdir('public');
   this.mkdir('public/js');
   this.mkdir('public/css');
@@ -125,6 +127,9 @@ SlimGenerator.prototype.app = function app() {
 
   //Copy Routes
   this.copy('backend/routes/_index.php', 'app/routes/index.php');
+
+  //Copy Tests
+  this.copy('backend/test/jasmine/testSpec.js', 'test/jasmine/testSpec.js')
 
   //Copy Coffeescript Sample Files
   this.copy('backend/src/coffee/_app.coffee', 'app/src/coffee/app.coffee');

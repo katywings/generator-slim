@@ -100,6 +100,7 @@ The following directory structure do you get:
 - Sub Generator for Routes `yo slim:route`
 
 ### Client Side
+- New: Jasmine Testing
 - jQuery
 - Underscore
 - Moment
@@ -116,32 +117,38 @@ The generator comes with a included server for php. For faster development, I ad
 
 ### Manual Installation
 If you don't wanna use the included grunt server, you can use any Apache/PHP Webserver. To get your webserver to work with the project you need to change the following things:
-- Setup your Apache Webserver DocumentRoot to "public/"
-- Run: `grunt`
-- And to start the watcher: `grunt watch`
+* Setup your Apache Webserver DocumentRoot to "public/"
+* Run: `grunt`
+* And to start the watcher: `grunt watch`
 
 ## Environments
 Thanks to the included server you often really doesnt need the following commands. But if you use an own Apache, PHP Server you need these commands to switch between the environments!
 
 ### Development
 All Script and CSS Files are served in full length, no uglifying. PHP View Files doesnt get cached. Livereload is active.
-- Run: `grunt` or `grunt development` to switch development
+* Run: `grunt` or `grunt development` to switch development
 
 ### Production
 Script and CSS Files are served minified. No livereload!
-- Run: `grunt production` to switch to production
+* Run: `grunt production` to switch to production
 
 ## Further Grunt Tasks
+### Jasmine testing
+* Create your Jasmine Tests in the folder *test/jasmine/*
+* Run: `grunt test` to start the jasmine tests
 
 ### Building dist
 The generated distribution includes just the needed files and is as small as possible. 
-- Run: `grunt dist` to generate the dist
-- `grunt dist` changes automatically to production, run `grunt` if you wanna change back to development!
+* Run: `grunt dist` to generate the dist
+* `grunt dist` changes automatically to production, run `grunt` if you wanna change back to development!
 
 ### Fetching npm and bower modules
-- Run: `sudo grunt fetch`, WARNING: The downloaded files will have System as Owner!
+* Run: `sudo grunt fetch`, WARNING: The downloaded files will have System as Owner!
 
 ## Changelog
+* 0.9.9
+    * Added Jasmine Testing
+
 * 0.9.8
     * Extended the manual including the directory structure, features and new tips and tricks
     * Corrected Bug: 404 error template wasnt loading correctly

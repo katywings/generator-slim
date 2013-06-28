@@ -1,3 +1,15 @@
+var jslib = ['bower_modules/jquery/jquery.min.js',
+        'bower_modules/underscore/underscore-min.js',
+        'bower_modules/bootstrap/docs/assets/js/bootstrap.min.js',
+        'bower_modules/backbone/backbone-min.js',
+        'bower_modules/backbone.marionette/public/javascripts/json2.js',
+        'bower_modules/backbone.marionette/public/javascripts/backbone.babysitter.js',
+        'bower_modules/backbone.marionette/public/javascripts/backbone.wreqr.js',
+        'bower_modules/backbone.marionette/lib/backbone.marionette.min.js',
+        'bower_modules/moment/min/moment.min.js',
+        'bower_modules/moment/min/langs.min.js'
+        ];
+
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -12,17 +24,7 @@ module.exports = function(grunt) {
     },
     concat: {
       bower_js: {
-        src: ['bower_modules/jquery/jquery.min.js',
-        'bower_modules/underscore/underscore-min.js',
-        'bower_modules/bootstrap/docs/assets/js/bootstrap.min.js',
-        'bower_modules/backbone/backbone-min.js',
-        'bower_modules/backbone.marionette/public/javascripts/json2.js',
-        'bower_modules/backbone.marionette/public/javascripts/backbone.babysitter.js',
-        'bower_modules/backbone.marionette/public/javascripts/backbone.wreqr.js',
-        'bower_modules/backbone.marionette/lib/backbone.marionette.min.js',
-        'bower_modules/moment/min/moment.min.js',
-        'bower_modules/moment/min/langs.min.js'
-        ],
+        src: jslib,
         dest: 'public/js/lib.min.js'
       },
       bower_css: {
@@ -36,7 +38,7 @@ module.exports = function(grunt) {
         files: [
           {src: ['public/**'], dest: 'dist/'},
           {src: ['app/**'], dest: 'dist/'},
-          {src: ['composer_modules/**'], dest: 'dist/'},
+          {src: ['vendor/**'], dest: 'dist/'},
         ]
       }
     },
@@ -168,7 +170,7 @@ module.exports = function(grunt) {
       },
     },
     php: {
-      test: {
+      server: {
         options: {
           port: <%= serverPort %>,
           keepalive: true,
@@ -183,7 +185,16 @@ module.exports = function(grunt) {
           grunt: true,
           stream: true
         },
-        tasks: ['php','watch','browser']
+        tasks: ['php:server','watch','browser']
+      }
+    },
+    jasmine: {
+      app: {
+        src: 'public/js/*.js',
+        options: {
+          vendor: jslib,
+          specs: 'test/jasmine/*.js'
+        }
       }
     }
   });
@@ -204,6 +215,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   
+  // Testing tools
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
+
   // Modules for server and watcher
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-php');
@@ -216,6 +230,7 @@ module.exports = function(grunt) {
   grunt.registerTask('fetch', ['exec','bower']);
   grunt.registerTask('dist', ['production','copy:dist','clean:dist','mkdir:dist']);
   grunt.registerTask('lib', ['concat','uglify:lib']);
+  grunt.registerTask('test', ['jasmine']);
 
   // Setup environment for development
   grunt.registerTask('development', ['build','lib','assemble:development_html','assemble:development_php','clean:development','mkdir:clean']);

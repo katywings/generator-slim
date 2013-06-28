@@ -1,7 +1,7 @@
 {
 	"config": {
 		"vendor-dir":"composer_modules",
-		"bin-dir":"composer_modules/bin"
+		"bin-dir":"compuser_modules/bin"
 	},
 	"require": {
 		"slim/slim": "2.*",
