@@ -34,6 +34,11 @@ module.exports = function(grunt) {
       }
     },
     copy: {
+      bootstrap: {
+        files: [
+          {expand: true, flatten: true, src: ['bower_modules/bootstrap/img/*'], dest: 'public/img/', filter: 'isFile'}
+        ]
+      },
       dist: {
         files: [
           {src: ['public/**'], dest: 'dist/'},
@@ -233,10 +238,10 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['jasmine']);
 
   // Setup environment for development
-  grunt.registerTask('development', ['build','lib','assemble:development_html','assemble:development_php','clean:development','mkdir:clean']);
+  grunt.registerTask('development', ['copy:bootstrap','build','lib','assemble:development_html','assemble:development_php','clean:development','mkdir:clean']);
 
   // Setup environment for production
-  grunt.registerTask('production', ['build','lib','assemble:production_html','assemble:production_php','clean:production','mkdir:clean']);
+  grunt.registerTask('production', ['copy:bootstrap','build','lib','assemble:production_html','assemble:production_php','clean:production','mkdir:clean']);
 
   grunt.registerTask('server', function(env){
     if(env == 'production'){
