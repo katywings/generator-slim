@@ -1,6 +1,6 @@
 {
   "name": "generator-slim",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "A Yo Generator which sets up a new, on the Slim Framework based, project.",
   "keywords": [
     "yeoman-generator",
