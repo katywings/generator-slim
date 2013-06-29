@@ -153,6 +153,9 @@ The generated distribution includes just the needed files and is as small as pos
 * Run: `grunt fetch`
 
 ## Changelog
+* 0.10.1
+    * Updated to Yeoman Generator 0.12.0
+
 * 0.10.0
     * Added automatic App Secret and AuthHash generation
     * Added Database Switch between Development (Sqlite) and Production (MySQL)

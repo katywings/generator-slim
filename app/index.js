@@ -21,22 +21,9 @@ var SlimGenerator = module.exports = function SlimGenerator(args, options, confi
 util.inherits(SlimGenerator, yeoman.generators.Base);
 
 SlimGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
+  var done = this.async();
 
-  // welcome message
-  var welcome =
-  '\n     _-----_' +
-  '\n    |       |' +
-  '\n    |' + '--(o)--'.red + '|   .--------------------------.' +
-  '\n   `---------´  |    ' + 'Welcome to Yeoman,'.yellow.bold + '    |' +
-  '\n    ' + '( '.yellow + '_' + '´U`'.yellow + '_' + ' )'.yellow + '   |   ' + 'ladies and gentlemen!'.yellow.bold + '  |' +
-  '\n    /___A___\\   \'__________________________\'' +
-  '\n     |  ~  |'.yellow +
-  '\n   __' + '\'.___.\''.yellow + '__' +
-  '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n';
-  
-
-  console.log(welcome);
+  console.log(this.yeoman)
   console.log('\n Please run "grunt" after the installation!'.red);
   var prompts = [{
     name: 'siteName',
@@ -52,24 +39,18 @@ SlimGenerator.prototype.askFor = function askFor() {
     default: 8080
   }];
   
-  this.prompt(prompts, function (err, props) {
-    if (err) {
-      return this.emit('error', err);
-    }
-
+  this.prompt(prompts, function (props) {
     this.authHashSecret = randomString({length: 30});
     this.sessionCookieSecret = randomString({length: 30});
     this.siteName = props.siteName;
     this.author = props.author;
     this.serverPort = props.serverPort;
 
-    cb();
+    done();
   }.bind(this));
 };
 
 SlimGenerator.prototype.app = function app() {
-  var that = this;
-
   this.mkdir('app');
   this.mkdir('tmp');
   this.mkdir('tmp/logs');
@@ -146,16 +127,20 @@ SlimGenerator.prototype.app = function app() {
   this.copy('backend/config/_config.env.php', 'app/config/config.env.php');
   this.copy('backend/config/_config.development.php', 'app/config/config.development.php');
   this.copy('backend/config/_config.production.php', 'app/config/config.production.php');
+};
 
+SlimGenerator.prototype.projectfiles = function projectfiles() {
+  this.copy('editorconfig', '.editorconfig');
+};
+
+SlimGenerator.prototype.composer = function composer() {
+  var done = this.async()
   this.fetch('https://getcomposer.org/composer.phar', 'composer.phar', function (err) {
     if (err) {
       return done(err);
     }
     execSync('php composer.phar install');
     execSync('git init');
+    done();
   });
-};
-
-SlimGenerator.prototype.projectfiles = function projectfiles() {
-  this.copy('editorconfig', '.editorconfig');
-};
+}
