@@ -4,7 +4,7 @@ namespace app\helpers;
 
 class AuthHash {
 	public static function create(){
-		$secret_hash = "YourSecretHash";
+		$secret_hash = "<%= authHashSecret %>";
 		$day = date("l");
 		$date = date("dmY");
 		$hash = sha1($secret_hash.$day.$date);

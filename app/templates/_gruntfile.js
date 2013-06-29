@@ -23,6 +23,13 @@ module.exports = function(grunt) {
       }
     },
     concat: {
+      coffee: {
+        src: ['app/src/coffee/*.coffee',
+        'app/src/coffee/views/*.coffee',
+        'app/src/coffee/models/*.coffee',
+        'app/src/coffee/collections/*.coffee'],
+        dest: 'tmp/app.coffee'
+      },
       bower_js: {
         src: jslib,
         dest: 'public/js/lib.min.js'
@@ -55,10 +62,7 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'public/dev/js/app.js': ['app/src/coffee/*.coffee',
-          'app/src/coffee/views/*.coffee',
-          'app/src/coffee/models/*.coffee',
-          'app/src/coffee/collections/*.coffee',] // compile and concat into single file
+          'public/dev/js/app.js': ['tmp/app.coffee']
         }
       }
     },
@@ -91,8 +95,8 @@ module.exports = function(grunt) {
     },
     clean: {
       dist: ["dist/app/src"],
-      development: ["logs","cache"],
-      production: ["public/dev", "logs", "cache"]
+      development: ["tmp"],
+      production: ["public/dev", "tmp"]
     },
     mkdir: {
       options: {
@@ -100,12 +104,12 @@ module.exports = function(grunt) {
       },
       clean: {
         options: {
-          create: ['logs','cache']
+          create: ['tmp','tmp/logs','tmp/cache']
         }
       },
       dist: {
         options: {
-          create: ['dist/logs','dist/cache']
+          create: ['dist/tmp','dist/tmp/logs','dist/tmp/cache']
         }
       }
     },
@@ -159,12 +163,12 @@ module.exports = function(grunt) {
     },
     watch: {
       options: {
-        nospawn: true,
+        nospawn: false,
         livereload: true
       },
       coffee: {
         files: ['**/*.coffee','**/*.twig'],
-        tasks: ['coffee','uglify:app'], 
+        tasks: ['concat:coffee','coffee','uglify:app'], 
       },
       less: {
         files: ['**/*.less','**/*.twig'],
@@ -231,17 +235,23 @@ module.exports = function(grunt) {
   
   // Basic tasks.
   grunt.registerTask('default', ['development']);
-  grunt.registerTask('build', ['coffee','uglify:app','less']);
+  grunt.registerTask('build', ['concat:coffee','coffee','uglify:app','less']);
   grunt.registerTask('fetch', ['exec','bower']);
   grunt.registerTask('dist', ['production','copy:dist','clean:dist','mkdir:dist']);
-  grunt.registerTask('lib', ['concat','uglify:lib']);
+  grunt.registerTask('lib', function(env){
+    if(env == 'production'){
+      grunt.task.run(['concat:bower_js','concat:bower_css','uglify:lib']);
+    } else {
+      grunt.task.run(['concat:bower_js','concat:bower_css']);
+    }
+  });
   grunt.registerTask('test', ['jasmine']);
 
   // Setup environment for development
   grunt.registerTask('development', ['copy:bootstrap','build','lib','assemble:development_html','assemble:development_php','clean:development','mkdir:clean']);
 
   // Setup environment for production
-  grunt.registerTask('production', ['copy:bootstrap','build','lib','assemble:production_html','assemble:production_php','clean:production','mkdir:clean']);
+  grunt.registerTask('production', ['copy:bootstrap','build','lib:production','assemble:production_html','assemble:production_php','clean:production','mkdir:clean']);
 
   grunt.registerTask('server', function(env){
     if(env == 'production'){

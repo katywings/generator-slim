@@ -10,9 +10,9 @@ This yeoman generator sets up a PHP Project including [Slim Framework](http://ww
 For the client part, ive included Backbone and Marionette. Coffeescript and Less are integrated in app/src and automatically builded and minified into the public folder.
 
 ## Getting started
-- Make sure you have [yo](https://github.com/yeoman/yo) installed: `sudo npm install -g yo`
-- Install the generator: `sudo npm install -g generator-slim`
-- Run: `sudo yo slim`
+* Make sure you have [yo](https://github.com/yeoman/yo) installed: `npm install -g yo`
+* Install the generator: `npm install -g generator-slim`
+* Run: `yo slim`
 
 ## What do you get?
 The following directory structure do you get:
@@ -83,41 +83,45 @@ The following directory structure do you get:
 ## Features
 
 ### Basic
-- All what you need for fast developing in PHP and Coffescript
-- Several optimized grunt tasks
-- Ready after install: start `grunt server` and you`re ready for development
-- Yeah git init was started at the installation ;) 
+* All what you need for fast developing in PHP and Coffescript
+* Several optimized grunt tasks
+* Ready after install: start `grunt server` and you`re ready for development
+* Yeah git init was started at the installation ;) 
 
 ### Server Side
-- PHP Basic Setup
-- Slim Framework Configured
-- Development / Production Settings
-- [Twig](http://twig.sensiolabs.org)
-- Templates (master layout based on h5b, one-column, breadcrumb, 404 error)
-- [PHP Mailer](https://github.com/Synchro/PHPMailer)
-- [RedBeanPHP](http://redbeanphp.com)
-- Several PHP Helper Classes (AuthHash Class, Search Class: File-based search Crawler)
-- Sub Generator for Routes `yo slim:route`
+* PHP Basic Setup
+* Slim Framework Configured
+* Development / Production Settings
+* [Twig](http://twig.sensiolabs.org)
+* Templates (master layout based on h5b, one-column, breadcrumb, 404 error)
+* [PHP Mailer](https://github.com/Synchro/PHPMailer)
+* [RedBeanPHP](http://redbeanphp.com)
+* Several PHP Helper Classes (AuthHash Class, Search Class: File-based search Crawler)
+* Sub Generator for Routes `yo slim:route`
 
 ### Client Side
-- New: Jasmine Testing
-- jQuery
-- Underscore
-- Moment
-- Backbone
-- Backbone.Marionette
-- Less and Coffeescript Automatic Compilation, Integration and Livereload
+* New: Jasmine Testing
+* jQuery
+* Underscore
+* Moment
+* Backbone
+* Backbone.Marionette
+* Less and Coffeescript Automatic Compilation, Integration and Livereload
 
 ## Server Setup
 ### Basic
 The generator comes with a included server for php. For faster development, I added a watcher with build at change and livereload.
-- PHP 5.4 is prerequired! Install it first (for [mac](http://php-osx.liip.ch))
-- Run: `grunt server` (The server runs in development!)
-- Run: `grunt server:production` to launch the production server
+
+* PHP 5.4 is prerequired! Install it first, example: [mac](http://php-osx.liip.ch)
+* Change the hashes in *app/app.php*, *app/helpers/authHash.php*
+* Change the sqlite and mysql Configs in *app/config/* to your needs
+* Run: `grunt server` *The server runs in development!*
+* Run: `grunt server:production` to launch the production server
 
 ### Manual Installation
 If you don't wanna use the included grunt server, you can use any Apache/PHP Webserver. To get your webserver to work with the project you need to change the following things:
-* Setup your Apache Webserver DocumentRoot to "public/"
+
+* Setup your Apache Webserver DocumentRoot to *public/*
 * Run: `grunt`
 * And to start the watcher: `grunt watch`
 
@@ -125,11 +129,13 @@ If you don't wanna use the included grunt server, you can use any Apache/PHP Web
 Thanks to the included server you often really doesnt need the following commands. But if you use an own Apache, PHP Server you need these commands to switch between the environments!
 
 ### Development
-All Script and CSS Files are served in full length, no uglifying. PHP View Files doesnt get cached. Livereload is active.
+All Script and CSS Files are served in full length, no uglifying. PHP View Files doesnt get cached. Livereload is active. SQlite is the active database.
+
 * Run: `grunt` or `grunt development` to switch development
 
 ### Production
-Script and CSS Files are served minified. No livereload!
+Script and CSS Files are served minified. No livereload! MySQL is the active database.
+
 * Run: `grunt production` to switch to production
 
 ## Further Grunt Tasks
@@ -139,13 +145,23 @@ Script and CSS Files are served minified. No livereload!
 
 ### Building dist
 The generated distribution includes just the needed files and is as small as possible. 
+
 * Run: `grunt dist` to generate the dist
 * `grunt dist` changes automatically to production, run `grunt` if you wanna change back to development!
 
 ### Fetching npm and bower modules
-* Run: `sudo grunt fetch`, WARNING: The downloaded files will have System as Owner!
+* Run: `grunt fetch`
 
 ## Changelog
+* 0.10.0
+    * Added automatic App Secret and AuthHash generation
+    * Added Database Switch between Development (Sqlite) and Production (MySQL)
+    * Added Directory *tmp* including *cache* and *Sqlite Database* added
+    * Removed chown command (obsolete)
+    * Bug: Readme not fully compatible with npmjs.org, is fixed
+    * Bug: no Sitename on 404 Template, is fixed
+    * Bug: Watcher breaks after several ticks, is fixed
+
 * 0.9.9
     * Added Jasmine Testing
 

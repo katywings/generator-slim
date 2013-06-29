@@ -5,12 +5,8 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var exec = require('child_process').exec;
 var execSync = require('exec-sync');
+var randomString = require('random-string');
 var foldername = path.basename(process.cwd());
-var chownOwner = 'false';
-
-if(process.platform !== 'win32'){
-  chownOwner = execSync('echo $SUDO_USER');
-}
 
 var SlimGenerator = module.exports = function SlimGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
@@ -55,28 +51,17 @@ SlimGenerator.prototype.askFor = function askFor() {
     message: 'Whats the webserver port?',
     default: 8080
   }];
-
-  if(process.platform !== 'win32'){
-    prompts.push({
-      name: 'chownOwner',
-      message: 'Set folder owner? [username|false]',
-      default: chownOwner
-    });
-  }
   
-
   this.prompt(prompts, function (err, props) {
     if (err) {
       return this.emit('error', err);
     }
 
+    this.authHashSecret = randomString({length: 30});
+    this.sessionCookieSecret = randomString({length: 30});
     this.siteName = props.siteName;
     this.author = props.author;
     this.serverPort = props.serverPort;
-
-    if(process.platform !== 'win32'){
-      this.owner = props.chownOwner;
-    }
 
     cb();
   }.bind(this));
@@ -86,8 +71,9 @@ SlimGenerator.prototype.app = function app() {
   var that = this;
 
   this.mkdir('app');
-  this.mkdir('cache');
-  this.mkdir('logs');
+  this.mkdir('tmp');
+  this.mkdir('tmp/logs');
+  this.mkdir('tmp/cache');
   this.mkdir('bower_modules');
   this.mkdir('node_modules');
   this.mkdir('composer_modules');
@@ -101,6 +87,13 @@ SlimGenerator.prototype.app = function app() {
   this.mkdir('app/config');
   this.mkdir('app/models');
   this.mkdir('app/routes');
+  this.mkdir('app/src');
+  this.mkdir('app/src/less');
+  this.mkdir('app/src/hbs');
+  this.mkdir('app/src/coffee');
+  this.mkdir('app/src/coffee/views');
+  this.mkdir('app/src/coffee/models');
+  this.mkdir('app/src/coffee/collections');
   this.mkdir('app/views');
   this.mkdir('app/views/errors');
   this.mkdir('app/views/layouts');
@@ -160,9 +153,6 @@ SlimGenerator.prototype.app = function app() {
     }
     execSync('php composer.phar install');
     execSync('git init');
-    if(process.platform !== 'win32' && that.owner !== 'false'){
-      execSync('chown -R ' + that.owner + ' .');
-    }
   });
 };
 

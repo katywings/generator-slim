@@ -1,16 +1,14 @@
 <?php
 
 namespace app;
-
+use RedBean_Facade as R;
 
 chdir ('../app/');
 
 //Register lib autoloader
 require '../composer_modules/autoload.php';
-use RedBean_Facade as R;
 
 // Prepare app
-
 require 'config/config.env.php';
 
 $app = new \Slim\Slim(array(
@@ -19,7 +17,7 @@ $app = new \Slim\Slim(array(
 	'templates.path' => '../app/views',
 	'log.level' => 4,
 	'log.writer' => new \Slim\Extras\Log\DateTimeFileWriter(array(
-		'path' => '../logs',
+		'path' => '../tmp/logs',
 		'name_format' => 'y-m-d'
 	))
 ));
@@ -31,7 +29,7 @@ $app->add(new \Slim\Middleware\SessionCookie(array(
     'secure' => false,
     'httponly' => false,
     'name' => 'slim_session',
-    'secret' => 'AddYourSecretHere',
+    'secret' => '<%= sessionCookieSecret %>',
     'cipher' => MCRYPT_RIJNDAEL_256,
     'cipher_mode' => MCRYPT_MODE_CBC
 )));
@@ -67,3 +65,4 @@ $app->view()->setData(array('menu'=>array(
 
 //Run
 $app->run();
+R::close();
