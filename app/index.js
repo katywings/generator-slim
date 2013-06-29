@@ -13,8 +13,20 @@ var SlimGenerator = module.exports = function SlimGenerator(args, options, confi
 
   this.on('end', function () {
     this.installDependencies({ skipInstall: options['skip-install'] });
-  });
 
+    if(options['skip-install'] != true){
+      var done = this.async()
+      this.fetch('https://getcomposer.org/composer.phar', 'composer.phar', function (err) {
+        if (err) {
+          return done(err);
+        }
+        execSync('php composer.phar install');
+        execSync('git init');
+        done();
+      });
+    }
+
+  });
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
@@ -131,16 +143,4 @@ SlimGenerator.prototype.app = function app() {
 
 SlimGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('editorconfig', '.editorconfig');
-};
-
-SlimGenerator.prototype.composer = function composer() {
-  var done = this.async()
-  this.fetch('https://getcomposer.org/composer.phar', 'composer.phar', function (err) {
-    if (err) {
-      return done(err);
-    }
-    execSync('php composer.phar install');
-    execSync('git init');
-    done();
-  });
 };
