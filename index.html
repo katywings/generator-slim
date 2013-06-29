@@ -45,11 +45,11 @@
 <a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
 
 <ul>
-<li>Make sure you have <a href="https://github.com/yeoman/yo">yo</a> installed: <code>sudo npm install -g yo</code>
+<li>Make sure you have <a href="https://github.com/yeoman/yo">yo</a> installed: <code>npm install -g yo</code>
 </li>
-<li>Install the generator: <code>sudo npm install -g generator-slim</code>
+<li>Install the generator: <code>npm install -g generator-slim</code>
 </li>
-<li>Run: <code>sudo yo slim</code>
+<li>Run: <code>yo slim</code>
 </li>
 </ul><h2>
 <a name="what-do-you-get" class="anchor" href="#what-do-you-get"><span class="octicon octicon-link"></span></a>What do you get?</h2>
@@ -165,8 +165,13 @@
 <p>The generator comes with a included server for php. For faster development, I added a watcher with build at change and livereload.</p>
 
 <ul>
-<li>PHP 5.4 is prerequired! Install it first (for <a href="http://php-osx.liip.ch">mac</a>)</li>
-<li>Run: <code>grunt server</code> (The server runs in development!)</li>
+<li>PHP 5.4 is prerequired! Install it first, example: <a href="http://php-osx.liip.ch">mac</a>
+</li>
+<li>Change the hashes in <em>app/app.php</em>, <em>app/helpers/authHash.php</em>
+</li>
+<li>Change the sqlite and mysql Configs in <em>app/config/</em> to your needs</li>
+<li>Run: <code>grunt server</code> <em>The server runs in development!</em>
+</li>
 <li>Run: <code>grunt server:production</code> to launch the production server</li>
 </ul><h3>
 <a name="manual-installation" class="anchor" href="#manual-installation"><span class="octicon octicon-link"></span></a>Manual Installation</h3>
@@ -174,7 +179,8 @@
 <p>If you don't wanna use the included grunt server, you can use any Apache/PHP Webserver. To get your webserver to work with the project you need to change the following things:</p>
 
 <ul>
-<li>Setup your Apache Webserver DocumentRoot to "public/"</li>
+<li>Setup your Apache Webserver DocumentRoot to <em>public/</em>
+</li>
 <li>Run: <code>grunt</code>
 </li>
 <li>And to start the watcher: <code>grunt watch</code>
@@ -187,14 +193,14 @@
 <h3>
 <a name="development" class="anchor" href="#development"><span class="octicon octicon-link"></span></a>Development</h3>
 
-<p>All Script and CSS Files are served in full length, no uglifying. PHP View Files doesnt get cached. Livereload is active.</p>
+<p>All Script and CSS Files are served in full length, no uglifying. PHP View Files doesnt get cached. Livereload is active. SQlite is the active database.</p>
 
 <ul>
 <li>Run: <code>grunt</code> or <code>grunt development</code> to switch development</li>
 </ul><h3>
 <a name="production" class="anchor" href="#production"><span class="octicon octicon-link"></span></a>Production</h3>
 
-<p>Script and CSS Files are served minified. No livereload!</p>
+<p>Script and CSS Files are served minified. No livereload! MySQL is the active database.</p>
 
 <ul>
 <li>Run: <code>grunt production</code> to switch to production</li>
@@ -221,11 +227,25 @@
 <a name="fetching-npm-and-bower-modules" class="anchor" href="#fetching-npm-and-bower-modules"><span class="octicon octicon-link"></span></a>Fetching npm and bower modules</h3>
 
 <ul>
-<li>Run: <code>sudo grunt fetch</code>, WARNING: The downloaded files will have System as Owner!</li>
+<li>Run: <code>grunt fetch</code>
+</li>
 </ul><h2>
 <a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
 
 <ul>
+<li>
+<p>0.10.0</p>
+
+<ul>
+<li>Added automatic App Secret and AuthHash generation</li>
+<li>Added Database Switch between Development (Sqlite) and Production (MySQL)</li>
+<li>Added Directory <em>tmp</em> including <em>cache</em> and <em>Sqlite Database</em> added</li>
+<li>Removed chown command (obsolete)</li>
+<li>Bug: Readme not fully compatible with npmjs.org, is fixed</li>
+<li>Bug: no Sitename on 404 Template, is fixed</li>
+<li>Bug: Watcher breaks after several ticks, is fixed</li>
+</ul>
+</li>
 <li>
 <p>0.9.9</p>
 
