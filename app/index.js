@@ -143,4 +143,4 @@ SlimGenerator.prototype.composer = function composer() {
     execSync('git init');
     done();
   });
-}
+};
