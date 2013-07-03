@@ -196,7 +196,7 @@
 <p>All Script and CSS Files are served in full length, no uglifying. PHP View Files doesnt get cached. Livereload is active. SQlite is the active database.</p>
 
 <ul>
-<li>Run: <code>grunt</code> or <code>grunt development</code> to switch development</li>
+<li>Run: <code>grunt</code> or <code>grunt development</code> to switch to development</li>
 </ul><h3>
 <a name="production" class="anchor" href="#production"><span class="octicon octicon-link"></span></a>Production</h3>
 
@@ -234,6 +234,14 @@
 
 <ul>
 <li>
+<p>0.10.4</p>
+
+<ul>
+<li>Name of Sqlite Database file renamed to db.sqlite</li>
+<li>Bug: .htaccess not copied to the dist Folder, is fixed</li>
+</ul>
+</li>
+<li>
 <p>0.10.1</p>
 
 <ul>
@@ -246,7 +254,8 @@
 <ul>
 <li>Added automatic App Secret and AuthHash generation</li>
 <li>Added Database Switch between Development (Sqlite) and Production (MySQL)</li>
-<li>Added Directory <em>tmp</em> including <em>cache</em> and <em>Sqlite Database</em> added</li>
+<li>Added Directory <em>tmp</em> including <em>cache</em> and <em>Sqlite Database</em>
+</li>
 <li>Removed chown command (obsolete)</li>
 <li>Bug: Readme not fully compatible with npmjs.org, is fixed</li>
 <li>Bug: no Sitename on 404 Template, is fixed</li>
