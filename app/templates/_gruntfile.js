@@ -48,9 +48,10 @@ module.exports = function(grunt) {
       },
       dist: {
         files: [
+          {src: ['public/.htaccess'], dest: 'dist/', filter: 'isFile'},
           {src: ['public/**'], dest: 'dist/'},
           {src: ['app/**'], dest: 'dist/'},
-          {src: ['vendor/**'], dest: 'dist/'},
+          {src: ['composer_modules/**'], dest: 'dist/'},
         ]
       }
     },

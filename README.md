@@ -131,7 +131,7 @@ Thanks to the included server you often really doesnt need the following command
 ### Development
 All Script and CSS Files are served in full length, no uglifying. PHP View Files doesnt get cached. Livereload is active. SQlite is the active database.
 
-* Run: `grunt` or `grunt development` to switch development
+* Run: `grunt` or `grunt development` to switch to development
 
 ### Production
 Script and CSS Files are served minified. No livereload! MySQL is the active database.
@@ -153,13 +153,17 @@ The generated distribution includes just the needed files and is as small as pos
 * Run: `grunt fetch`
 
 ## Changelog
+* 0.10.4
+    * Name of Sqlite Database file renamed to db.sqlite
+    * Bug: .htaccess not copied to the dist Folder, is fixed
+
 * 0.10.1
     * Updated to Yeoman Generator 0.12.0
 
 * 0.10.0
     * Added automatic App Secret and AuthHash generation
     * Added Database Switch between Development (Sqlite) and Production (MySQL)
-    * Added Directory *tmp* including *cache* and *Sqlite Database* added
+    * Added Directory *tmp* including *cache* and *Sqlite Database*
     * Removed chown command (obsolete)
     * Bug: Readme not fully compatible with npmjs.org, is fixed
     * Bug: no Sitename on 404 Template, is fixed
