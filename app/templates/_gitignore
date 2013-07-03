@@ -1,5 +1,4 @@
-cache
-logs
+tmp
 public/js
 public/dev
 public/css

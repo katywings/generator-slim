@@ -153,6 +153,9 @@ The generated distribution includes just the needed files and is as small as pos
 * Run: `grunt fetch`
 
 ## Changelog
+* 0.10.5
+    * Bug: `grunt fetch` creates *lib Directory*, is fixed
+
 * 0.10.4
     * Name of Sqlite Database file renamed to db.sqlite
     * Bug: .htaccess not copied to the dist Folder, is fixed
