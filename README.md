@@ -1,7 +1,12 @@
 # Generator-slim
 [![Build Status](https://secure.travis-ci.org/katywings/generator-slim.png)](https://travis-ci.org/katywings/generator-slim)
 
-Maintainer: [Katja Lutz](https://github.com/katywings)
+Founder: [Katja Lutz](https://github.com/katywings),
+Maintainer: *wanted*,
+Delevopers: *wanted*
+
+**This project needs several overhauls! And has a couple of bugs with the current Version of node.js**
+**If anyone has the interest to develop this project further, please contact me! I'm out of time.**
 
 This yeoman generator sets up a PHP Project including [Slim Framework](http://www.slimframework.com), all needed configs to begin with developing and several grunt tasks. Yes its a PHP Project Generator and automatically downloads composer and several php libs.
 
