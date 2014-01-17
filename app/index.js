@@ -10,23 +10,7 @@ var foldername = path.basename(process.cwd());
 
 var SlimGenerator = module.exports = function SlimGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
-
-  this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
-
-    if(options['skip-install'] != true){
-      var done = this.async()
-      this.fetch('https://getcomposer.org/composer.phar', 'composer.phar', function (err) {
-        if (err) {
-          return done(err);
-        }
-        execSync('php composer.phar install');
-        execSync('git init');
-        done();
-      });
-    }
-
-  });
+  this.options = options;
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
@@ -144,3 +128,19 @@ SlimGenerator.prototype.app = function app() {
 SlimGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('editorconfig', '.editorconfig');
 };
+
+SlimGenerator.prototype.install = function (){
+  if(this.options['skip-install']){
+    return;
+  }
+  var done = this.async();
+  this.installDependencies({ skipInstall: this.options['skip-install']});
+  this.fetch('https://getcomposer.org/composer.phar', '', function (err) {
+    if (err) {
+      return done(err);
+    }
+    execSync('php composer.phar install');
+    execSync('git init');
+    done();
+  });
+}

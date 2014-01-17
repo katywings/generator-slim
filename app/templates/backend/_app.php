@@ -2,7 +2,7 @@
 
 namespace app;
 use RedBean_Facade as R;
-date_default_timezone_set("Europe/Zurich");
+date_default_timezone_set("UTC");
 
 chdir ('../app/');
 
@@ -14,13 +14,8 @@ require 'config/config.env.php';
 
 $app = new \Slim\Slim(array(
 	'mode' => $env,
-	'view' => new \Slim\Extras\Views\Twig(),
-	'templates.path' => '../app/views',
-	'log.level' => 4,
-	'log.writer' => new \Slim\Extras\Log\DateTimeFileWriter(array(
-		'path' => '../tmp/logs',
-		'name_format' => 'y-m-d'
-	))
+	'view' => new \Slim\Views\Twig(),
+	'templates.path' => '../app/views'
 ));
 
 $app->add(new \Slim\Middleware\SessionCookie(array(
@@ -38,30 +33,26 @@ $app->add(new \Slim\Middleware\SessionCookie(array(
 //Loads all needed subfiles
 require 'bootstrap.php';
 
+// Prepare view
+$app->view->parserOptions = array(
+    'debug' => true,
+    'cache' => $app->config('cache'),
+);
+$app->view->parserExtensions = array(
+    new \Slim\Views\TwigExtension(),
+);
+
 //Load 404 Route
 $app->notFound(function () use ($app) {
 	$request = $app->request();
 	$requesturi = 'http://'.$_SERVER["HTTP_HOST"].$request->getRootUri().$request->getResourceUri();
-	$app->view()->appendData(array('viewName'=>'Page not found','requesturi'=>$requesturi));
+	$app->view->appendData(array('viewName'=>'Page not found','requesturi'=>$requesturi));
     $app->render('errors/404.twig');
 });
 
-// Prepare view
-\Slim\Extras\Views\Twig::$twigOptions = array (
-	'charset' => 'utf-8',
-	'cache' => $app->config('cache'),
-	'auto_reload' => false,
-	'strict_variables' => false,
-	'autoescape' => true
-);
-
-\Slim\Extras\Views\Twig::$twigExtensions = array (
-	'Twig_Extensions_Slim'
-);
-
-$app->view()->setData(array('menu'=>array(
-	'Home',
-	),
+$app->view->setData(array('menu'=>array(
+    'Home',
+    ),
 ));
 
 //Run

@@ -158,6 +158,12 @@ The generated distribution includes just the needed files and is as small as pos
 * Run: `grunt fetch`
 
 ## Changelog
+* 0.10.6
+    * Bug: Installation with current version of yeoman not possible, is fixed
+    * Bug: Slim Framework Views are broken, is fixed
+    * Bug: DateTime Warning, is fixed
+    * Bug: Breadcrumbs broken with current Bootstrap Version, is fixed
+
 * 0.10.5
     * Bug: `grunt fetch` creates *lib Directory*, is fixed
 

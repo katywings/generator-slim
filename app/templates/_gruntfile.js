@@ -1,6 +1,6 @@
 var jslib = ['bower_modules/jquery/jquery.min.js',
         'bower_modules/underscore/underscore-min.js',
-        'bower_modules/bootstrap/docs/assets/js/bootstrap.min.js',
+        'bower_modules/bootstrap/dist/js/bootstrap.min.js',
         'bower_modules/backbone/backbone-min.js',
         'bower_modules/backbone.marionette/public/javascripts/json2.js',
         'bower_modules/backbone.marionette/public/javascripts/backbone.babysitter.js',
@@ -35,8 +35,8 @@ module.exports = function(grunt) {
         dest: 'public/js/lib.min.js'
       },
       bower_css: {
-        src: ['bower_modules/bootstrap/docs/assets/css/bootstrap.css',
-        'bower_modules/bootstrap/docs/assets/css/bootstrap-responsive.css'],
+        src: ['bower_modules/bootstrap/dist/css/bootstrap.css',
+        'bower_modules/bootstrap/dist/css/bootstrap-responsive.css'],
         dest: 'public/css/lib.css'
       }
     },
