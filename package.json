@@ -1,6 +1,6 @@
 {
   "name": "generator-slim",
-  "version": "0.10.6",
+  "version": "0.10.7",
   "description": "A Yo Generator which sets up a new, on the Slim Framework based, project.",
   "keywords": [
     "yeoman-generator",
@@ -10,7 +10,7 @@
   "homepage": "http://katywings.github.io/generator-slim",
   "bugs": "https://github.com/katywings/generator-slim/issues",
   "author": {
-    "name": "",
+    "name": "katywings + ADG Alessandro del Gobbo",
     "email": "",
     "url": "https://github.com/katywings"
   },
@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "yeoman-generator": "~0.16.0",
-    "exec-sync": "~0.1.6",
     "random-string": "0.1.1"
   },
   "devDependencies": {

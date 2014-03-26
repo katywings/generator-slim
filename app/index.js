@@ -4,7 +4,7 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var exec = require('child_process').exec;
-var execSync = require('exec-sync');
+//var execSync = require('exec-sync');
 var randomString = require('random-string');
 var foldername = path.basename(process.cwd());
 
@@ -139,8 +139,8 @@ SlimGenerator.prototype.install = function (){
     if (err) {
       return done(err);
     }
-    execSync('php composer.phar install');
-    execSync('git init');
+    exec('php composer.phar install');
+    exec('git init');
     done();
   });
 }
