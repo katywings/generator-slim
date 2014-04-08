@@ -10,10 +10,20 @@
   "homepage": "http://katywings.github.io/generator-slim",
   "bugs": "https://github.com/katywings/generator-slim/issues",
   "author": {
-    "name": "katywings + ADG Alessandro del Gobbo",
+    "name": "Katja Lutz",
     "email": "",
     "url": "https://github.com/katywings"
   },
+  "contributors": [
+    {
+      "name": "ADG Alessandro del Gobbo",
+      "url": "https://github.com/aledelgo"
+    },
+    {
+      "name": "Hariadi Hinta",
+      "url": "https://github.com/hariadi"
+    }
+  ],
   "main": "app/index.js",
   "repository": {
     "type": "git",
@@ -23,8 +33,10 @@
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.16.0",
-    "random-string": "0.1.1"
+    "chalk": "~0.4.0",
+    "random-string": "~0.1.1",
+    "shelljs": "~0.2.6",
+    "yeoman-generator": "~0.16.0"
   },
   "devDependencies": {
     "mocha": "~1.9.0"
