@@ -16,6 +16,7 @@ For the client part, ive included Backbone and Marionette. Coffeescript and Less
 
 ## Getting started
 * Make sure you have [yo](https://github.com/yeoman/yo) installed: `npm install -g yo`
+* Install [composer](https://getcomposer.org/doc/00-intro.md#globally) global on your machine
 * Install the generator: `npm install -g generator-slim`
 * Run: `yo slim`
 
@@ -149,7 +150,7 @@ Script and CSS Files are served minified. No livereload! MySQL is the active dat
 * Run: `grunt test` to start the jasmine tests
 
 ### Building dist
-The generated distribution includes just the needed files and is as small as possible. 
+The generated distribution includes just the needed files and is as small as possible.
 
 * Run: `grunt dist` to generate the dist
 * `grunt dist` changes automatically to production, run `grunt` if you wanna change back to development!
@@ -158,8 +159,13 @@ The generated distribution includes just the needed files and is as small as pos
 * Run: `grunt fetch`
 
 ## Changelog
+* 0.11.1
+    * Tested on Mac OS X 10.9.2 [katywings](https://github.com/katywings)
+    * Updated several composer dependencies
+    * Bug: Changed RedBean dependency to 3.5, because 4.* isn't compatible to composer [twocabbages](https://github.com/twocabbages)
+
 * 0.11.0
-    * Whole cleanup of the generator code
+    * Whole cleanup of the generator code by [hariadi](https://github.com/hariadi)
 
 * 0.10.6
     * Bug: Installation with current version of yeoman not possible, is fixed

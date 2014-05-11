@@ -4,8 +4,8 @@
 		"bin-dir":"composer_modules/bin"
 	},
 	"require": {
-		"slim/slim": "dev-develop",
-		"slim/views": "dev-develop", 
+		"slim/slim": "2.*",
+		"slim/views": "0.1.*",
 		"twig/twig": "1.15.*@dev",
 		"gabordemooij/redbean": "dev-RedBeanPHP3_5_X",
 		"phpmailer/phpmailer": "dev-master"
