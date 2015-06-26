@@ -16,7 +16,7 @@
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-jasmine": "~0.5.1",
-    "assemble": "~0.3.80",
+    "assemble": "~0.4.42",
     "grunt-php":"~0.1.1",
     "grunt-parallel":"~0.2.0"
   },
